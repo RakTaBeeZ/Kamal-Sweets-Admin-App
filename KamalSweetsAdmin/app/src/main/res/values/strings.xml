@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Kamal Sweets Admin</string>
+    <string name="hello_Category_fragment">Hello Category fragment</string>
+    <string name="hello_Product_fragment">Hello Product fragment</string>
+    <string name="hello_AddProduct_fragment">Hello AddProduct fragment</string>
+    <string name="hello_Slider_fragment">Hello Slider fragment</string>
+    <string name="addcategory">ADD CATEGORY</string>
+    <string name="addproduct">ADD PRODUCTS</string>
+    <string name="addslider">ADD SLIDER</string>
+    <string name="uploaddata">UPLOAD DATA</string>
+    <string name="allotderdetail">ALL ORDER DETAILS</string>
+    <string name="uploadimage">UPLOAD IMAGE</string>
+    <string name="loading">Loading...</string>
+    <string name="uploadcategory">UPLOAD CATEGORY</string>
+</resources>

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "18659549973",
+    "project_id": "kamal-sweets",
+    "storage_bucket": "kamal-sweets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18659549973:android:5462c68fd013c0205bbf1c",
+        "android_client_info": {
+          "package_name": "com.example.kamalsweets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18659549973-sku18pd53m7bdu96bn1qqg4p2cka1f18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB04srDgxNd19bk_Z0EVvoT2EiK6uudnKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18659549973-sku18pd53m7bdu96bn1qqg4p2cka1f18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18659549973:android:6fcffb8dbcb93ce65bbf1c",
+        "android_client_info": {
+          "package_name": "com.example.kamalsweetsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18659549973-sku18pd53m7bdu96bn1qqg4p2cka1f18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB04srDgxNd19bk_Z0EVvoT2EiK6uudnKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18659549973-sku18pd53m7bdu96bn1qqg4p2cka1f18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
