@@ -51,13 +51,29 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
 
         when(list[position].status){
             "Ordered"->{
-                holder.binding.proceedButton.text="Confirm Order"
-                holder.binding.productUpdate.text="New Order Recieved!"
-                holder.binding.productUpdate.setTextColor(Color.parseColor("#02E72A"))
-                holder.binding.proceedButton.setOnClickListener {
-                    updateStatus("Confirmed",list[position].orderId!!,position)
 
-                }
+
+                    holder.binding.proceedButton.text="Confirm Order"
+                    holder.binding.productUpdate.text="New Order Recieved!"
+                    holder.binding.productUpdate.setTextColor(Color.parseColor("#02E72A"))
+                    holder.binding.proceedButton.setOnClickListener {
+                        Firebase.firestore.collection("allOrders").document(list[position].orderId!!)
+                            .get().addOnSuccessListener {
+                               val status =it.getString("status").toString()
+                                if (list[position].status==status){
+                                    updateStatus("Confirmed",list[position].orderId!!,position)
+
+                                }else{
+                                    holder.binding.proceedButton.visibility=View.GONE
+                                    holder.binding.productUpdate.text="Order Canceled By Customer"
+                                    holder.binding.productUpdate.setTextColor(Color.parseColor("#CD0808"))
+                                }
+                            }
+
+
+                    }
+
+
             }
             "Confirmed"->{
                 holder.binding.proceedButton.text="Dispatched"
@@ -102,8 +118,6 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
         data["status"]=str
         Firebase.firestore.collection("allOrders").document(doc).update(data)
             .addOnSuccessListener {
-                list[position].status = str
-                notifyDataSetChanged()
                 Toast.makeText(context, "Status Updated", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
