@@ -39,6 +39,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-auth-ktx:22.1.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.2.1'
     def nav_version = "2.6.0"
 
     implementation 'androidx.core:core-ktx:1.8.0'

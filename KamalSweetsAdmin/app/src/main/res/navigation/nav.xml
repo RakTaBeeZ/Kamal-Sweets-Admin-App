@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_homeFragment_to_sliderFragment"
             app:destination="@id/sliderFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allUsersFragment"
+            app:destination="@id/allUsersFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
@@ -43,4 +46,9 @@
         android:name="com.example.kamalsweetsadmin.Fragment.SliderFragment"
         android:label="fragment_slider"
         tools:layout="@layout/fragment_slider" />
+    <fragment
+        android:id="@+id/allUsersFragment"
+        android:name="com.example.kamalsweetsadmin.Fragment.AllUsersFragment"
+        android:label="fragment_all_users"
+        tools:layout="@layout/fragment_all_users" />
 </navigation>

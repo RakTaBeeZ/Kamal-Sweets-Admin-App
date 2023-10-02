@@ -65,6 +65,8 @@ class CategoryFragment : Fragment() {
                     list.add(data!!)
                 }
                 binding.categoryRecycler.adapter=CategoryAdapter(list,requireContext())
+            }.addOnFailureListener { error->
+                Toast.makeText(requireContext(), "$error", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -113,6 +115,7 @@ class CategoryFragment : Fragment() {
                 dialog.dismiss()
                 binding.imageView.setImageDrawable(resources.getDrawable(R.drawable.image_preview))
                 binding.categoryName.text=null
+                getData()
                 Toast.makeText(requireContext(), "Category Uploaded SuccessFully", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {

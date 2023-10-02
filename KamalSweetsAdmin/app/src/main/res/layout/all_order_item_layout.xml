@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="4dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Product Name"
+            android:textStyle="bold"
+            android:layout_marginLeft="6dp"
+            android:id="@+id/productTitle"
+            android:textSize="22sp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"/>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Price : 1200rs"
+                android:layout_marginLeft="6dp"
+                android:textSize="20sp"
+                android:id="@+id/productPrice"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/productUpdate"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/customer_name"
+            android:text="Customer Name"
+            android:layout_marginLeft="6dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/customer_number"
+            android:text="Customer Name"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/customer_address"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:text="Customer Name"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:layout_marginLeft="6dp"
+
+                android:id="@+id/cancelButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/proceedButton"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_weight="1"
+                android:text="Dispatched"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
