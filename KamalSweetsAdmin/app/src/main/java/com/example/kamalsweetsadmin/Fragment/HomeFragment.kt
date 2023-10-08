@@ -36,6 +36,9 @@ class HomeFragment : Fragment() {
             allorderdetail.setOnClickListener {
                 startActivity(Intent(requireContext(),AllOrderActivity::class.java))
             }
+            alluserdetail.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_allUsersFragment)
+            }
 
 
         }

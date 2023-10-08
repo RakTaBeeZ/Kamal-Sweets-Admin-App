@@ -5,7 +5,7 @@
     <string name="hello_AddProduct_fragment">Hello AddProduct fragment</string>
     <string name="hello_Slider_fragment">Hello Slider fragment</string>
     <string name="addcategory">ADD CATEGORY</string>
-    <string name="addproduct">ADD PRODUCTS</string>
+    <string name="addproduct">ALL PRODUCTS</string>
     <string name="addslider">ADD SLIDER</string>
     <string name="uploaddata">UPLOAD DATA</string>
     <string name="allotderdetail">ALL ORDER DETAILS</string>
@@ -14,4 +14,5 @@
     <string name="uploadcategory">UPLOAD CATEGORY</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="userDetails">USER DETAILS</string>
 </resources>

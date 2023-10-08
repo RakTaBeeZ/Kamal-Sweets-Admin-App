@@ -79,8 +79,22 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:id="@+id/product_sp_edt"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content"
                     android:hint="Product SellingPrize" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="UNIT"
+                android:padding="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/product_unit"
+                    android:inputType="textCapCharacters"
+                    android:layout_height="wrap_content"
+                    android:hint="Eg:- /KG, /PIECE" />
             </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:id="@+id/product_Category_Dropdown"

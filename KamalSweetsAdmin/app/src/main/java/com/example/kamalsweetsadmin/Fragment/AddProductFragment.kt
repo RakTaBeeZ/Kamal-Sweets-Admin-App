@@ -82,23 +82,25 @@ class AddProductFragment : Fragment() {
 
     private fun validateData() {
         binding.apply {
-            if (productNameEdt.text.toString().isEmpty()){
+            if (productNameEdt.text.toString().trim().isEmpty()){
                 productNameEdt.requestFocus()
                 productNameEdt.error="Empty"
-            }else if (productDiscEdt.text.toString().isEmpty()){
+            }else if (productDiscEdt.text.toString().trim().isEmpty()){
                 productDiscEdt.requestFocus()
                 productDiscEdt.error="Empty"
-            }else if (productMrpEdt.text.toString().isEmpty()){
+            }else if (productMrpEdt.text.toString().trim().isEmpty()){
                 productMrpEdt.requestFocus()
                 productMrpEdt.error="Empty"
-            }else if (productSpEdt.text.toString().isEmpty()){
+            }else if (productSpEdt.text.toString().trim().isEmpty()){
                 productSpEdt.requestFocus()
                 productSpEdt.error="Empty"
-            }else if(coverImage==null)
+            }else if (productSpEdt.text.toString().trim().isEmpty()){
+                productSpEdt.requestFocus()
+                productSpEdt.error="Empty"
+            } else if(coverImage==null)
                 Toast.makeText(requireContext(), "Please Select Cover Image", Toast.LENGTH_SHORT).show()
             else if(list.size<1){
                 Toast.makeText(requireContext(), "Please Select Product Image", Toast.LENGTH_SHORT).show()
-
             }else{
                 uploadCoverImage()
             }
@@ -154,18 +156,21 @@ class AddProductFragment : Fragment() {
          val key=db.document().id
 
         val data=AddProductModel(
-            binding.productNameEdt.text.toString(),
-            binding.productDiscEdt.text.toString(),
-            coverImageUrl.toString(),
+            binding.productNameEdt.text.toString().trim(),
+            binding.productDiscEdt.text.toString().trim(),
+            coverImageUrl.toString().trim(),
             categoryList[binding.productCategoryDropdown.selectedItemPosition],
             key,
-            binding.productMrpEdt.text.toString(),
-            binding.productSpEdt.text.toString(),
-            listImage
+            binding.productMrpEdt.text.toString().trim(),
+            binding.productSpEdt.text.toString().trim(),
+            listImage,
+            binding.productUnit.text.toString().trim(),
+            "In Stock"
             )
         db.document(key).set(data).addOnSuccessListener {
             dialog.dismiss()
             Toast.makeText(requireContext(), "Product Added Successfully", Toast.LENGTH_SHORT).show()
+            list.clear()
             binding.apply {
                 productNameEdt.text=null
                 productDiscEdt.text=null

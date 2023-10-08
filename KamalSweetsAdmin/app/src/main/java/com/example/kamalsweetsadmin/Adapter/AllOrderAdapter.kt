@@ -17,7 +17,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :RecyclerView.Adapter<AllOrderAdapter.viewHolder>() {
-
+private lateinit var deliveryPersonName:String
+private lateinit var deliveryPersonNumber:String
     inner class viewHolder(val binding: AllOrderItemLayoutBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
@@ -31,9 +32,11 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        holder.binding.productTitle.text="${list[position].name}  x  ${list[position].productQuantity}"
+
+        holder.binding.productTitle.text="${list[position].name}  x  ${list[position].productQuantity}                                  "
         holder.binding.productPrice.text="₹"+list[position].price
         holder.binding.customerNumber.text=list[position].userId
+        holder.binding.paymentStatus.text="Payment Status: "+list[position].paymentStatus
         holder.binding.customerName.text=list[position].userName
         holder.binding.customerAddress.text=list[position].userAddress
         if(list[position].status=="Canceled"){
@@ -60,11 +63,15 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
                         Firebase.firestore.collection("allOrders").document(list[position].orderId!!)
                             .get().addOnSuccessListener {
                                val status =it.getString("status").toString()
-                                if (list[position].status==status){
+                                if (status=="Ordered"){
                                     updateStatus("Confirmed",list[position].orderId!!,position)
 
+
                                 }else{
+                                    holder.binding.cancelReason.visibility=View.VISIBLE
+                                    holder.binding.cancelReason.text="Reason:-"+it.getString("cancelReason").toString()
                                     holder.binding.proceedButton.visibility=View.GONE
+                                    holder.binding.cancelButton.isEnabled=false
                                     holder.binding.productUpdate.text="Order Canceled By Customer"
                                     holder.binding.productUpdate.setTextColor(Color.parseColor("#CD0808"))
                                 }
@@ -76,18 +83,34 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
 
             }
             "Confirmed"->{
-                holder.binding.proceedButton.text="Dispatched"
+                holder.binding.proceedButton.text="Dispatch Order"
                 holder.binding.productUpdate.text="Order Confirmed!"
                 holder.binding.productUpdate.setTextColor(Color.parseColor("#02E72A"))
                 holder.binding.proceedButton.setOnClickListener {
-                    updateStatus("Dispatched",list[position].orderId!!,position)
+                    if(holder.binding.delPerNam.text.toString().isEmpty() or holder.binding.delPerNum.text.toString().isEmpty()){
+                        holder.binding.delPerNam.visibility=View.VISIBLE
+                        holder.binding.delPerNum.visibility=View.VISIBLE
+                        Toast.makeText(context, "Plesae Provide Delivery Details", Toast.LENGTH_SHORT).show()
+                    }else{
+                        deliveryPersonName=holder.binding.delPerNam.text.toString()
+                        deliveryPersonNumber=holder.binding.delPerNum.text.toString()
+                        holder.binding.delPerNam.visibility=View.GONE
+                        holder.binding.delPerNum.visibility=View.GONE
+                        holder.binding.delPerNumP.text="Person Nu8mber: "+deliveryPersonNumber
+                        holder.binding.delPerNamP.text="Person Name: "+deliveryPersonName
+                        holder.binding.deliveryDetails.visibility=View.VISIBLE
+
+                        updateStatus("Dispatched",list[position].orderId!!,position)
+
+                    }
 
                 }
             }
             "Dispatched"->{
                 holder.binding.productUpdate.text="Order Dispatched"
                 holder.binding.productUpdate.setTextColor(Color.parseColor("#FFBD33"))
-                holder.binding.proceedButton.text="Deliver"
+                holder.binding.proceedButton.text="Deliver Order"
+
                 holder.binding.proceedButton.setOnClickListener {
                     updateStatus("Delivered", list[position].orderId!!,position)
 
@@ -97,8 +120,9 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
                 holder.binding.cancelButton.visibility=View.GONE
                 holder.binding.productUpdate.text="Order Delivered"
                 holder.binding.productUpdate.setTextColor(Color.parseColor("#02E72A"))
-                holder.binding.proceedButton.text="Already Delivered"
+                holder.binding.proceedButton.text="Order is Delivered"
                 holder.binding.proceedButton.isEnabled=false
+
                 holder.binding.proceedButton.setOnClickListener {
                     Toast.makeText(context, "Product Has Delivered to customer", Toast.LENGTH_SHORT).show()
                 }
@@ -107,6 +131,35 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
                 holder.binding.proceedButton.visibility=View.GONE
                 holder.binding.productUpdate.text="Order Canceled"
                 holder.binding.productUpdate.setTextColor(Color.parseColor("#CD0808"))
+            }
+        }
+        fetchDeliveryDetails(holder,list[position].orderId!!)
+    }
+
+    private fun fetchDeliveryDetails(holder: AllOrderAdapter.viewHolder,orderId:String) {
+        if(holder.binding.proceedButton.text=="Dispatch Order" || holder.binding.proceedButton.text=="Confirm Order"){
+            if(holder.binding.cancelButton.text=="Order Canceled"){
+                Firebase.firestore.collection("allOrders").document(orderId).get().addOnSuccessListener {
+                    if (it.getString("deliveryPersonName").toString().isEmpty()){
+
+                    }else{
+
+                        holder.binding.delPerNumP.text="Person Number: "+it.getString("deliveryPersonNumber")
+                        holder.binding.delPerNamP.text="Person Name: "+it.getString("deliveryPersonName")
+                        holder.binding.deliveryDetails.visibility=View.VISIBLE
+                    }
+
+                }
+            }
+        }else{
+            Firebase.firestore.collection("allOrders").document(orderId).get().addOnSuccessListener {
+                if (it.getString("deliveryPersonName").toString().isEmpty()){
+
+                }else{
+                    holder.binding.delPerNumP.text="Person Number: "+it.getString("deliveryPersonNumber")
+                    holder.binding.delPerNamP.text="Person Name: "+it.getString("deliveryPersonName")
+                    holder.binding.deliveryDetails.visibility=View.VISIBLE
+                }
 
             }
         }
@@ -116,9 +169,15 @@ class AllOrderAdapter(var list: ArrayList<AllOrderModel>,val context: Context) :
     private fun updateStatus(str:String,doc:String,position: Int){
         val data= hashMapOf<String,Any>()
         data["status"]=str
+        if(str=="Dispatched"){
+            data["deliveryPersonName"]=deliveryPersonName
+            data["deliveryPersonNumber"]=deliveryPersonNumber
+        }
         Firebase.firestore.collection("allOrders").document(doc).update(data)
             .addOnSuccessListener {
+                notifyDataSetChanged()
                 Toast.makeText(context, "Status Updated", Toast.LENGTH_SHORT).show()
+
             }.addOnFailureListener {
                 Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
             }

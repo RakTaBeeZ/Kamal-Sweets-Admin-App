@@ -1,13 +1,15 @@
 package com.example.kamalsweetsadmin.Model
 
 data class AddProductModel (
-    val ProductName:String?="",
-    val ProductDiscription:String?="",
-    val ProductCoverImage:String?="",
-    val productCategory:String?="",
-    val ProduductID:String?="",
-    val ProductMRP:String?="",
-    val ProductSp:String?="",
-    val ProductImage:ArrayList<String>,
+    var ProductName:String?="",
+    var ProductDiscription:String?="",
+    var ProductCoverImage:String?="",
+    var productCategory:String?="",
+    var ProduductID:String?="",
+    var ProductMRP:String?="",
+    var ProductSp:String?="",
+    var ProductImage:ArrayList<String>,
+    var productUnit:String="",
+    var stockStatus:String=""
 
     )

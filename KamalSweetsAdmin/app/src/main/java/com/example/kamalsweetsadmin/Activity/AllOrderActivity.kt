@@ -3,6 +3,7 @@ package com.example.kamalsweetsadmin.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.kamalsweetsadmin.Adapter.AllOrderAdapter
 import com.example.kamalsweetsadmin.Model.AllOrderModel
@@ -17,6 +18,7 @@ class AllOrderActivity : AppCompatActivity() {
         ActivityAllOrderBinding.inflate(layoutInflater)
 
     }
+
     private lateinit var list:ArrayList<AllOrderModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +27,16 @@ class AllOrderActivity : AppCompatActivity() {
 
 
         Firebase.firestore.collection("allOrders").get().addOnSuccessListener {
+            
+            if(it.size()<1){
+                binding.recyclerView.visibility=View.GONE
+                binding.noOrders.visibility=View.VISIBLE
+            }
             list.clear()
 
-            for (doc in it){
+            for (doc in it.documents){
                 val data=doc.toObject(AllOrderModel::class.java)
-                list.add(data)
+                list.add(data!!)
             }
             val adapter =AllOrderAdapter(list,this)
             binding.recyclerView.adapter=adapter
@@ -39,5 +46,11 @@ class AllOrderActivity : AppCompatActivity() {
             Toast.makeText(this, "Fetching Order Details Went Wrong", Toast.LENGTH_SHORT).show()
         }
 
+
+
+
     }
+
+   
+
 }

@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -20,32 +21,53 @@
         app:layout_constraintVertical_bias="0.5">
 
 
-        <Button android:id="@+id/addCategory"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addCategory"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/button_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textSize="20sp"
+
             android:text="@string/addcategory" />
 
-        <Button android:id="@+id/Product"
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/Product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:textColor="@color/colorPrimary"
             android:layout_margin="8dp"
             android:textSize="20sp"
             android:text="@string/addproduct" />
 
-        <Button android:id="@+id/addSlider"
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/addSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:textColor="@color/colorPrimary"
             android:layout_margin="8dp"
             android:textSize="20sp"
             android:text="@string/addslider" />
 
-        <Button android:id="@+id/allorderdetail"
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/allorderdetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:textColor="@color/colorPrimary"
             android:layout_margin="8dp"
             android:textSize="20sp"
             android:text="@string/allotderdetail" />
+
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/alluserdetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:text="@string/userDetails" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
