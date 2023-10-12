@@ -13,6 +13,7 @@ class AllOrderModel {
     var paymentStatus: String = ""
     var deliveryPersonName:String=""
     var deliveryPersonNumber:String=""
+    var cancelReason:String=""
 
     constructor()
     constructor(
@@ -27,7 +28,8 @@ class AllOrderModel {
         productQuantity: String,
         paymentStatus: String,
         deliveryPersonName:String,
-        deliveryPersonNumber:String
+        deliveryPersonNumber:String,
+        cancelReason:String
     ) {
         this.name = name
         this.orderId = orderId
@@ -41,6 +43,7 @@ class AllOrderModel {
         this.paymentStatus = paymentStatus
         this.deliveryPersonName=deliveryPersonName
         this.deliveryPersonNumber=deliveryPersonNumber
+        this.cancelReason=cancelReason
     }
 
 }

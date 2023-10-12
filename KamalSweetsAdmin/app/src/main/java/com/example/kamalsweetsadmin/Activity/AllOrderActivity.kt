@@ -48,7 +48,6 @@ class AllOrderActivity : AppCompatActivity() {
 
 
 
-
     }
 
    

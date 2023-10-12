@@ -21,52 +21,81 @@
         app:layout_constraintVertical_bias="0.5">
 
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/addCategory"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/button_background"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:text="@string/addcategory"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp"
 
-            android:text="@string/addcategory" />
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp" />
 
-        <androidx.appcompat.widget.AppCompatButton android:id="@+id/Product"
+        <Button
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:id="@+id/Product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
             android:textColor="@color/colorPrimary"
+            app:strokeColor="@color/colorPrimary"
             android:layout_margin="8dp"
             android:textSize="20sp"
+            app:strokeWidth="2dp"
             android:text="@string/addproduct" />
 
-        <androidx.appcompat.widget.AppCompatButton android:id="@+id/addSlider"
+        <Button
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:id="@+id/addSlider"
+            app:strokeWidth="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
             android:textColor="@color/colorPrimary"
             android:layout_margin="8dp"
+            app:strokeColor="@color/colorPrimary"
             android:textSize="20sp"
             android:text="@string/addslider" />
 
-        <androidx.appcompat.widget.AppCompatButton android:id="@+id/allorderdetail"
+        <Button
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:id="@+id/allorderdetail"
             android:layout_width="match_parent"
+            app:strokeWidth="2dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
+            app:strokeColor="@color/colorPrimary"
             android:textColor="@color/colorPrimary"
             android:layout_margin="8dp"
             android:textSize="20sp"
             android:text="@string/allotderdetail" />
 
-        <androidx.appcompat.widget.AppCompatButton android:id="@+id/alluserdetail"
+        <Button
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeWidth="2dp"
+            android:id="@+id/alluserdetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            app:strokeColor="@color/colorPrimary"
+            android:text="@string/userDetails"
             android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/orderhistory"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            app:strokeWidth="2dp"
+            android:text="@string/orderHistory"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp"
-            android:text="@string/userDetails" />
+            app:strokeColor="@color/colorPrimary" />
     </LinearLayout>
 
 

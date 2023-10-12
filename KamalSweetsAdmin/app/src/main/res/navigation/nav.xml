@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeFragment_to_allUsersFragment"
             app:destination="@id/allUsersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
@@ -51,4 +54,9 @@
         android:name="com.example.kamalsweetsadmin.Fragment.AllUsersFragment"
         android:label="fragment_all_users"
         tools:layout="@layout/fragment_all_users" />
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.example.kamalsweetsadmin.Fragment.OrderHistoryFragment"
+        android:label="fragment_order_history"
+        tools:layout="@layout/fragment_order_history" />
 </navigation>

@@ -33,6 +33,7 @@ private lateinit var deliveryPersonNumber:String
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
 
+
         holder.binding.productTitle.text="${list[position].name}  x  ${list[position].productQuantity}                                  "
         holder.binding.productPrice.text="₹"+list[position].price
         holder.binding.customerNumber.text=list[position].userId
@@ -54,8 +55,6 @@ private lateinit var deliveryPersonNumber:String
 
         when(list[position].status){
             "Ordered"->{
-
-
                     holder.binding.proceedButton.text="Confirm Order"
                     holder.binding.productUpdate.text="New Order Recieved!"
                     holder.binding.productUpdate.setTextColor(Color.parseColor("#02E72A"))
@@ -65,8 +64,6 @@ private lateinit var deliveryPersonNumber:String
                                val status =it.getString("status").toString()
                                 if (status=="Ordered"){
                                     updateStatus("Confirmed",list[position].orderId!!,position)
-
-
                                 }else{
                                     holder.binding.cancelReason.visibility=View.VISIBLE
                                     holder.binding.cancelReason.text="Reason:-"+it.getString("cancelReason").toString()
@@ -76,11 +73,7 @@ private lateinit var deliveryPersonNumber:String
                                     holder.binding.productUpdate.setTextColor(Color.parseColor("#CD0808"))
                                 }
                             }
-
-
                     }
-
-
             }
             "Confirmed"->{
                 holder.binding.proceedButton.text="Dispatch Order"
@@ -116,13 +109,19 @@ private lateinit var deliveryPersonNumber:String
 
                 }
             }
+
             "Delivered"->{
                 holder.binding.cancelButton.visibility=View.GONE
                 holder.binding.productUpdate.text="Order Delivered"
                 holder.binding.productUpdate.setTextColor(Color.parseColor("#02E72A"))
                 holder.binding.proceedButton.text="Order is Delivered"
                 holder.binding.proceedButton.isEnabled=false
-
+                var data = getData(position)
+                Firebase.firestore.collection("orderHistory").document(list[position].orderId!!).set(data).addOnSuccessListener {
+                    deleteDocument(position)
+                }.addOnFailureListener {e->
+                    Log.w("user", "Error In Adding History document", e)
+                }
                 holder.binding.proceedButton.setOnClickListener {
                     Toast.makeText(context, "Product Has Delivered to customer", Toast.LENGTH_SHORT).show()
                 }
@@ -136,14 +135,39 @@ private lateinit var deliveryPersonNumber:String
         fetchDeliveryDetails(holder,list[position].orderId!!)
     }
 
+    private fun deleteDocument(position: Int) {
+        Firebase.firestore.collection("allOrders").document(list[position].orderId!!).delete()
+            .addOnSuccessListener {
+                Log.d("user", "DocumentSnapshot successfully deleted!")
+            }.addOnFailureListener {e->
+                Log.w("user", "Error deleting document", e)
+            }
+    }
+
+    private fun getData(position:Int): Any {
+        val data = hashMapOf<String,Any>()
+        data["name"]=list[position].name!!
+        data["price"]=list[position].price!!
+        data["productId"]=list[position].productId!!
+        data["status"]= list[position].status!!
+        data["userId"]=list[position].userId!!
+        data["userName"]=list[position].userName!!
+        data["userAddress"]=list[position].userAddress
+        data["productQuantity"]=list[position].productQuantity
+        data["cancelReason"]=list[position].cancelReason
+        data["paymentStatus"]=list[position].paymentStatus
+        data["deliveryPersonName"]=list[position].deliveryPersonName
+        data["deliveryPersonNumber"]=list[position].deliveryPersonNumber
+
+        return data
+    }
+
     private fun fetchDeliveryDetails(holder: AllOrderAdapter.viewHolder,orderId:String) {
         if(holder.binding.proceedButton.text=="Dispatch Order" || holder.binding.proceedButton.text=="Confirm Order"){
             if(holder.binding.cancelButton.text=="Order Canceled"){
                 Firebase.firestore.collection("allOrders").document(orderId).get().addOnSuccessListener {
                     if (it.getString("deliveryPersonName").toString().isEmpty()){
-
                     }else{
-
                         holder.binding.delPerNumP.text="Person Number: "+it.getString("deliveryPersonNumber")
                         holder.binding.delPerNamP.text="Person Name: "+it.getString("deliveryPersonName")
                         holder.binding.deliveryDetails.visibility=View.VISIBLE

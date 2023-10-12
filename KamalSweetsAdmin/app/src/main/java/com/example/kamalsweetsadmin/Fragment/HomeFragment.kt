@@ -39,6 +39,9 @@ class HomeFragment : Fragment() {
             alluserdetail.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_allUsersFragment)
             }
+            orderhistory.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_orderHistoryFragment)
+            }
 
 
         }
