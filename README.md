@@ -2,7 +2,7 @@
 
 This is the **Admin-side Android application** of a food ordering system. It allows shop owners or administrators to manage food items, view and process customer orders, update order statuses, and monitor daily activity — all in real-time.
 
-> 📱 This app works alongside the [User App](https://github.com/yourusername/food-ordering-user-app). Both apps are installed separately and maintained in different repositories.
+> 📱 This app works alongside the [User App](https://github.com/RakTaBeeZ/Kamal-Sweets-App). Both apps are installed separately and maintained in different repositories.
 
 ## ⚙️ Admin Features
 
