@@ -50,7 +50,7 @@ This is the **Admin-side Android application** of a food ordering system. It all
 | ![](screenshots/login.png) | ![](screenshots/add.png) | ![](screenshots/orders.png) | ![](screenshots/status.png) |
 
 ## 🔗 Related Project
-User App Repository
+[User App Repository](https://github.com/RakTaBeeZ/Kamal-Sweets-App)
 
 ## 🔮 Future Enhancements
 Admin analytics dashboard (total revenue, popular items)
